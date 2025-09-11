@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3B82F6" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Nigerian National Grid Monitor</title>
+    <meta name="title" content="Nigerian National Grid Monitor">
+    <meta name="description" content="Real-time monitoring dashboard for Nigeria's National Grid. Track power generation, demand, grid status, and outages by location with interactive charts and DISCO zone mapping.">
+    <meta name="keywords" content="Nigeria, National Grid, Power, Electricity, DISCO, GENCO, Grid Monitoring, Power Outage, TCN, NISO">
+    <meta name="author" content="Nigerian Grid Monitor">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natgrid-monitor.com/">
+    <meta property="og:title" content="Nigerian National Grid Monitor">
+    <meta property="og:description" content="Real-time monitoring dashboard for Nigeria's National Grid. Track power generation, demand, grid status, and outages by location.">
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://natgrid-monitor.com/">
+    <meta property="twitter:title" content="Nigerian National Grid Monitor">
+    <meta property="twitter:description" content="Real-time monitoring dashboard for Nigeria's National Grid. Track power generation, demand, grid status, and outages by location.">
+    <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png">
+    
+    <!-- Favicon and Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://maps.googleapis.com">
+    <link rel="preconnect" href="https://niggrid.org">
+    
+    <!-- PWA support -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="NG Grid Monitor">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.gstatic.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      img-src 'self' data: https://maps.googleapis.com https://maps.gstatic.com *.googleusercontent.com;
+      font-src 'self' https://fonts.gstatic.com;
+      connect-src 'self' https://niggrid.org https://maps.googleapis.com;
+      frame-src 'none';
+      object-src 'none';
+      base-uri 'self';
+    ">
+    
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Nigerian National Grid Monitor",
+      "description": "Real-time monitoring dashboard for Nigeria's National Grid",
+      "url": "https://natgrid-monitor.com",
+      "applicationCategory": "Utility",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Nigerian Grid Monitor"
+      }
+    }
+    </script>
+  </head>
+  
+  <body>
+    <noscript>
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f9fafb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      ">
+        <div style="
+          max-width: 400px;
+          text-align: center;
+          padding: 2rem;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        ">
+          <h1 style="color: #1f2937; margin-bottom: 1rem;">JavaScript Required</h1>
+          <p style="color: #6b7280; line-height: 1.5;">
+            Nigerian National Grid Monitor requires JavaScript to display real-time grid data and interactive charts.
+            Please enable JavaScript in your browser settings and refresh this page.
+          </p>
+        </div>
+      </div>
+    </noscript>
+    
+    <!-- Loading indicator shown until React loads -->
+    <div id="initial-loading" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    ">
+      <div style="text-align: center;">
+        <div style="
+          width: 48px;
+          height: 48px;
+          border: 4px solid #e5e7eb;
+          border-top: 4px solid #3b82f6;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 1rem auto;
+        "></div>
+        <h2 style="color: #1f2937; margin: 0 0 0.5rem 0; font-size: 1.25rem; font-weight: 600;">
+          Nigerian Grid Monitor
+        </h2>
+        <p style="color: #6b7280; margin: 0; font-size: 0.875rem;">
+          Loading dashboard...
+        </p>
+      </div>
+    </div>
+
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide loading indicator once React loads */
+      #root:not(:empty) ~ #initial-loading {
+        display: none;
+      }
+    </style>
+    
+    <div id="root"></div>
+    
+    <!-- Remove loading indicator when React is ready -->
+    <script>
+      // Remove loading indicator once the app starts rendering
+      const observer = new MutationObserver(function(mutations) {
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0) {
+          const loading = document.getElementById('initial-loading');
+          if (loading) {
+            loading.style.display = 'none';
+          }
+          observer.disconnect();
+        }
+      });
+      
+      observer.observe(document.getElementById('root'), {
+        childList: true,
+        subtree: true
+      });
+      
+      // Fallback: remove loading after 10 seconds regardless
+      setTimeout(() => {
+        const loading = document.getElementById('initial-loading');
+        if (loading) {
+          loading.style.display = 'none';
+        }
+      }, 10000);
+    </script>
+  </body>
+</html>

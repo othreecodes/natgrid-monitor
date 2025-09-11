@@ -1,0 +1,327 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom styles for the Nigerian Grid Monitor - Next.js version */
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading animation improvements */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Chart container improvements */
+.recharts-wrapper {
+  font-family: inherit;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 12px;
+  fill: #6b7280;
+}
+
+.recharts-legend-wrapper {
+  font-size: 14px;
+}
+
+/* Google Maps container styles */
+.gm-style {
+  font-family: inherit;
+}
+
+.gm-style-iw-c {
+  border-radius: 8px;
+}
+
+/* Custom button hover effects */
+.btn-hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Status indicator animations */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator.online::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: status-pulse 2s infinite;
+  opacity: 0.6;
+}
+
+@keyframes status-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Chart tooltip improvements */
+.recharts-tooltip-wrapper {
+  z-index: 1000;
+}
+
+.recharts-default-tooltip {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Grid layout improvements */
+.grid-dashboard {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .grid-dashboard {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Card hover effects */
+.card-interactive {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Loading skeleton improvements */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Error state styles */
+.error-state {
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+  border: 1px solid #fecaca;
+}
+
+.error-icon {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Success state styles */
+.success-state {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #bbf7d0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  .mobile-full-width {
+    width: 100%;
+  }
+  
+  .mobile-text-center {
+    text-align: center;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: #000 !important;
+    stroke-opacity: 0.3 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin,
+  .animate-pulse,
+  .animate-ping {
+    animation: none;
+  }
+  
+  .btn-hover-lift:hover {
+    transform: none;
+  }
+  
+  .card-interactive:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-full-width {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  .bg-gray-50,
+  .bg-gray-100 {
+    background: white !important;
+  }
+  
+  .border,
+  .border-gray-200 {
+    border-color: #ccc !important;
+  }
+}
+
+/* Next.js specific styles */
+.__next {
+  min-height: 100vh;
+}
+
+/* Custom utilities */
+.text-primary-600 {
+  color: #3B82F6;
+}
+
+.bg-primary-600 {
+  background-color: #3B82F6;
+}
+
+.border-primary-500 {
+  border-color: #3B82F6;
+}
+
+.ring-primary-500 {
+  --tw-ring-color: #3B82F6;
+}
+
+.text-success-600 {
+  color: #16a34a;
+}
+
+.bg-success-50 {
+  background-color: #f0fdf4;
+}
+
+.bg-success-100 {
+  background-color: #dcfce7;
+}
+
+.bg-success-500 {
+  background-color: #22c55e;
+}
+
+.text-success-700 {
+  color: #15803d;
+}
+
+.text-danger-600 {
+  color: #dc2626;
+}
+
+.bg-danger-50 {
+  background-color: #fef2f2;
+}
+
+.bg-danger-100 {
+  background-color: #fee2e2;
+}
+
+.bg-danger-500 {
+  background-color: #ef4444;
+}
+
+.text-danger-700 {
+  color: #b91c1c;
+}
